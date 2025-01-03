@@ -1,8 +1,5 @@
-// Import file Global.css
-
 import Link from "@/node_modules/next/link";
-import "../app/globals.css"
-
+import "../app/globals.css";
 
 export const metadata = {
   title: "Next.js",
@@ -14,27 +11,41 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
-  
   return (
     <html lang="en">
       <body>
+        {/* Navbar */}
+        <nav className="navbar bg-gray-800 text-white p-4">
+          <div className="container mx-auto flex justify-between items-center">
+            <ul className="flex space-x-4">
+              <li>
+                <Link href="/dashboard"></Link>
+                  <a className="hover:underline">Dashboard</a>
+                
+              </li>
+              <li>
+                <Link href="/about"></Link>
+                  <a className="hover:underline">About</a>
+                
+              </li>
+              <li>
+                <Link href="/contact"></Link>
+                  <a className="hover:underline">Contact</a>
+                
+              </li>
+            </ul>
+          </div>
+        </nav>
 
         {/* Main Content */}
-        <section>
-          {children}
-        </section>
+        <section>{children}</section>
 
         {/* Footer */}
         <footer className="footer footer-center bg-blue-500 text-white rounded p-10">
           <nav className="grid grid-flow-col gap-4">
             <p>Follows Our Socials</p>
           </nav>
-          <aside>
-            <Link href={'/dashboard'}>
-              Copyright ©2024 - Barang Second - Vanguard
-            </Link>
-          </aside>
+          <aside>Copyright ©2024 - Barang Second - Vanguard</aside>
         </footer>
       </body>
     </html>
