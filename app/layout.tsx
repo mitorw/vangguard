@@ -15,7 +15,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {/* Navbar */}
-        <nav className="navbar bg-gray-800 text-white p-4">
+        <nav className="navbar  bg-blue-500 text-white p-4">
           <div className="container mx-auto flex justify-between items-center">
             <ul className="flex space-x-4">
               <li>
@@ -35,6 +35,10 @@ export default function RootLayout({
               </li>
             </ul>
           </div>
+        </nav>
+
+        <nav >
+          ini dashboard
         </nav>
 
         {/* Main Content */}
