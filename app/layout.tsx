@@ -1,3 +1,6 @@
+import { faInstagram, faTiktok, faXTwitter } from "@/node_modules/@fortawesome/free-brands-svg-icons/index";
+import { FontAwesomeIcon } from "@/node_modules/@fortawesome/react-fontawesome/index";
+import "@fortawesome/fontawesome-svg-core/styles.css"
 import Link from "@/node_modules/next/link";
 import "../app/globals.css";
 
@@ -15,32 +18,35 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {/* Navbar */}
-        <nav className="navbar  bg-blue-500 text-white p-4">
-          <div className="container mx-auto flex justify-between items-center">
-            <ul className="flex space-x-4">
-              <li>
-                <Link href="/dashboard"></Link>
-                  <a className="hover:underline">Dashboard</a>
-                
-              </li>
-              <li>
-                <Link href="/about"></Link>
-                  <a className="hover:underline">About</a>
-                
-              </li>
-              <li>
-                <Link href="/contact"></Link>
-                  <a className="hover:underline">Contact</a>
-                
-              </li>
-            </ul>
-            <Link href="login">
-                  <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
-                    Login
-                  </button>
-                </Link>
+        <header className="mb-10">
+        {/* Navbar */}
+        <nav>
+          <div className="navbar bg-blue-500 fixed top-0 left-0 w-full z-50 shadow-xl">
+            <div className="navbar-start">
+              <Link href={"/"} className="navbar-center btn btn-ghost text-xl">
+              Barang Second
+            </Link>
+            </div>
+
+            <div className="navbar-end lg:flex">
+            <ul className="menu menu-horizontal px-1">
+                <li>
+                  <Link href={"/"}>Dashboard</Link>
+                </li>
+                <li>
+                <Link href={"/"}>Akun</Link>
+                </li>
+              </ul>
+              
+              <Link href="/login" className="pl-2">
+                <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
+                  Login
+                </button>
+              </Link>
+            </div>
           </div>
         </nav>
+      </header>
 
 
         {/* Main Content */}
@@ -50,6 +56,19 @@ export default function RootLayout({
         <footer className="footer footer-center bg-blue-500 text-white rounded p-10">
           <nav className="grid grid-flow-col gap-4">
             <p>Follows Our Socials</p>
+          </nav>
+          <nav>
+            <div className="grid grid-flow-col gap-4">
+              <Link href="/" title="Instagram" >
+                <FontAwesomeIcon icon={faInstagram} className="text-white mx-2 text-3xl" />
+              </Link>
+              <Link href="/" title="Tiktok" >
+                <FontAwesomeIcon icon={faTiktok} className="text-white mx-2 text-3xl" />
+              </Link>
+              <Link href="/" title="Twitter" >
+                <FontAwesomeIcon icon={faXTwitter} className="text-white mx-2 text-3xl" />
+              </Link>
+            </div>
           </nav>
           <aside>Copyright ©2024 - Barang Second - Vanguard</aside>
         </footer>
