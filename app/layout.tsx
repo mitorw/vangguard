@@ -34,7 +34,7 @@ export default function RootLayout({
                   <Link href={"/dashboard"}>Dashboard</Link>
                 </li>
                 <li>
-                <Link href={"/"}>Akun</Link>
+                <Link href={"/"}>Profil</Link>
                 </li>
               </ul>
               
