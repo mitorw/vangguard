@@ -47,10 +47,13 @@ export default function Profile() {
           </div>
         </div>
 
+        {/* Tombol Edit Profil */}
+        <div className="mt-6 text-center">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+            Edit Profile
+          </button>
+        </div>
 
-       
-
-        
 
         
       </div>
