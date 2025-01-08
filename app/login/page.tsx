@@ -4,7 +4,7 @@ export default function loginPage() {
     return (
       <div className="flex items-center justify-center w-auto h-auto p-10 bg-gray-100">
         <div className="bg-white p-8 rounded-md shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4 text-white text-center">Login</h2>
+          <h2 className="text-2xl font-bold mb-4 text-black text-center">Sign In</h2>
           <form>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
