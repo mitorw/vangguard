@@ -17,7 +17,13 @@ export default function dashboardPage() {
           />
         </div>
       </header>
-      
+      <div className='flex items-center justify-center w-auto h-auto p-10 bg-gray-100'>
+        <div className='bg-white p-4 rounded-md shadow-lg w-full '>
+            <h2 className='text-black text-center'>
+                content
+            </h2>
+        </div>
+      </div>
     </div>
   )
 }
