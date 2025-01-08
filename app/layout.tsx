@@ -31,7 +31,7 @@ export default function RootLayout({
             <div className="navbar-end lg:flex">
             <ul className="menu menu-horizontal px-1">
                 <li>
-                  <Link href={"/"}>Dashboard</Link>
+                  <Link href={"/dashboard"}>Dashboard</Link>
                 </li>
                 <li>
                 <Link href={"/"}>Akun</Link>
