@@ -24,6 +24,30 @@ export default function Profile() {
           </div>
         </div>
 
+        {/* Informasi Detail */}
+        <div className="mt-6 border-t pt-4">
+          <h3 className="text-lg font-semibold text-gray-700">Profile Details</h3>
+          <div className="mt-3 space-y-2">
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Full Name:</span>
+              <span></span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Email:</span>
+              <span></span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Phone:</span>
+              <span></span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Address:</span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+
        
 
         
