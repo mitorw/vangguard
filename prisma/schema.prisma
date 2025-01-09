@@ -9,6 +9,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model tb_produk {
+  id        Int       @id @default(autoincrement())
+  nama      String    @db.VarChar(255)
+  harga     Float
+  deskripsi String?   @db.Text
+  gambar    String    @db.VarChar(255)
 }
