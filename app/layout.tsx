@@ -30,7 +30,7 @@ export default function RootLayout({
           </nav>
           <nav>
             <div className="grid grid-flow-col gap-4">
-              <Link href="/" title="Instagram" >
+              <Link href="/dashboard" title="Instagram" >
                 <FontAwesomeIcon icon={faInstagram} className="text-white mx-2 text-3xl" />
               </Link>
               <Link href="/" title="Tiktok" >
