@@ -1,15 +1,28 @@
-import React from 'react'
-import "@fortawesome/fontawesome-svg-core/styles.css"
-import Image from '@/node_modules/next/image';
-import Link from '@/node_modules/next/link';
+"use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "@/node_modules/next/link";
+import { getData } from "../models/produk";  // Mengimpor fungsi getData untuk mendapatkan data produk
 
-export default function dashboardPage() {
+export default function DashboardPage() {
+  const [products, setProducts] = useState<any[]>([]);  // Menyimpan data produk dalam state
+
+  // Fungsi untuk mengambil data produk dari model
+  async function fetchData() {
+    const data = await getData();  // Mendapatkan data produk
+    setProducts(data);  // Menyimpan data produk ke state
+  }
+
+  // useEffect untuk mengambil data produk ketika halaman dimuat
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
       {/* Navbar */}
       <header className="mb-10">
-        {/* Navbar */}
         <nav>
           <div className="navbar bg-blue-500 fixed top-0 left-0 w-full z-50 shadow-xl">
             <div className="navbar-start">
@@ -51,30 +64,31 @@ export default function dashboardPage() {
         </div>
       </header>
 
-      {/* content section */}
-      <div className='flex items-center justify-center w-auto h-auto p-10 bg-gray-100'>
-        <div className='bg-white p-4 rounded-md shadow-lg w-full '>
-          <h2 className='text-black text-center mb-10 text-2xl'>
-            Daftar Produk
-          </h2>
+      {/* Content Section */}
+      <div className="flex items-center justify-center w-auto h-auto p-10 bg-gray-100">
+        <div className="bg-white p-4 rounded-md shadow-lg w-full">
+          <h2 className="text-black text-center mb-10 text-2xl">Daftar Produk</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            {/* Card Product */}
-            <div className="card glass">
-              <img src="/images/item.jpg" alt="items" className='w-full h-56 object-cover rounded-lg' />
-              <div className="card-body text-black">
-                <h2 className="card-title ">Life hack</h2>
-                <p>How to park your car at your garage?</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Learn now!</button>
+            {products.map((product) => (
+              <div key={product.id} className="card glass">
+                <img
+                  src="/images/item.jpg"
+                  alt={product.nama}
+                  className="w-full h-56 object-cover rounded-lg"
+                />
+                <div className="card-body text-black">
+                  <h2 className="card-title">{product.nama}</h2>
+                  <p>Price: Rp. {product.harga.toFixed(2)}</p>
+                  <p>{product.deskripsi || "No description available."}</p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Buy now!</button>
+                  </div>
                 </div>
               </div>
-            </div>
-
+            ))}
           </div>
-
         </div>
       </div>
     </div>
-  )
+  );
 }
