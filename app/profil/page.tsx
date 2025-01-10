@@ -38,16 +38,16 @@ export default function Profile() {
     
     {/* Bagian Profile */}
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded shadow-md w-full max-w-3xl">
+      <div className="bg-white p-6 rounded shadow-md w-full mx-10">
         {/* Header Profil */}
         <div className="flex items-center space-x-4">
-          <div className="w-24 h-24">
-            <Image
-              src="" // source gambar avatar pengguna
+          <div className="w-32 h-32">
+            <img
+              src="/images/item.jpg" // source gambar avatar pengguna
               alt="User Avatar"
-              width={96}
-              height={96}
-              className="rounded-full object-cover"
+              width={150}
+              height={150}
+              className="object-cover rounded-full"
               />
           </div>
           <div>
