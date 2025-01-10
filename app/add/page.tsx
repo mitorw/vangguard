@@ -1,9 +1,37 @@
 "use client";
 
-import Link from "@/node_modules/next/link";
+import { useState } from "react";
+import { setSaveData } from "../models/produk"; // Import fungsi setSaveData
+import Link from "next/link";
 
 export default function AddProdukPage() {
+  // State untuk input form
+  const [nama, setNama] = useState("");
+  const [harga, setHarga] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
 
+  // Fungsi untuk menangani submit form
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Mencegah reload halaman
+
+    if (!nama || !harga) {
+      alert("Nama dan harga produk wajib diisi!");
+      return;
+    }
+
+    try {
+      // Panggil fungsi setSaveData
+      await setSaveData(nama, parseFloat(harga), deskripsi);
+      alert("Produk berhasil ditambahkan!");
+      // Reset form setelah submit
+      setNama("");
+      setHarga("");
+      setDeskripsi("");
+    } catch (error) {
+      console.error("Gagal menyimpan produk:", error);
+      alert("Terjadi kesalahan saat menambahkan produk.");
+    }
+  };
 
   return (
     <div>
@@ -27,7 +55,7 @@ export default function AddProdukPage() {
                 </li>
               </ul>
               <Link href="/add">
-                <button className=" text-white px-4 py-2 rounded-md ">
+                <button className="text-white px-4 py-2 rounded-md">
                   Tambah Produk
                 </button>
               </Link>
@@ -41,26 +69,51 @@ export default function AddProdukPage() {
         </nav>
       </header>
 
-      <div className="p-10 bg-gray-100 ">
+      <div className="p-10 bg-gray-100">
         <div className="bg-white p-6 rounded-md shadow-md max-w-lg mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-center text-black">Tambah Produk Baru</h2>
-          <label className="input input-bordered flex items-center my-5">
-            Nama Produk :
-            <input type="text" className="grow" placeholder=" Produk A" />
-          </label>
-          <label className="input input-bordered flex items-center my-5">
-            Harga :
-            <input type="text" className="grow" placeholder=" Rp. 200.000.000" />
-          </label>
-          <label className="input input-bordered flex flex-col my-5 h-40 p-4">
-            Deskripsi Produk :
-            <textarea className="grow p-3 border rounded mt-2 mb-4" placeholder="Windows 11, RTX 3050 TI, dll"></textarea>
-          </label>
+          <h2 className="text-2xl font-bold mb-6 text-center text-black">
+            Tambah Produk Baru
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <label className="input input-bordered flex items-center my-5">
+              Nama Produk:
+              <input
+                type="text"
+                className="grow"
+                placeholder="Produk A"
+                value={nama}
+                onChange={(e) => setNama(e.target.value)}
+              />
+            </label>
+            <label className="input input-bordered flex items-center my-5">
+              Harga:
+              <input
+                type="number"
+                className="grow"
+                placeholder="200000000"
+                value={harga}
+                onChange={(e) => setHarga(e.target.value)}
+              />
+            </label>
+            <label className="input input-bordered flex flex-col my-5 h-40 p-4">
+              Deskripsi Produk:
+              <textarea
+                className="grow p-3 border rounded mt-2 mb-4"
+                placeholder="Windows 11, RTX 3050 TI, dll"
+                value={deskripsi}
+                onChange={(e) => setDeskripsi(e.target.value)}
+              ></textarea>
+            </label>
 
-          <div className="flex justify-center">
-            <button className="btn btn-xs lg:btn-lg bg-blue-500 text-white">Submit</button>
-          </div>
-
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="btn btn-xs lg:btn-lg bg-blue-500 text-white"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
