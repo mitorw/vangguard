@@ -54,7 +54,11 @@ export default function DashboardPage() {
                   <Link href={"/profil"}>Profil</Link>
                 </li>
               </ul>
-
+              <Link href="/add">
+              <button className=" text-white px-4 py-2 rounded-md ">
+                Tambah Produk
+                </button>
+                </Link>
               <Link href="/login" className="pl-2">
                 <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
                   Login
