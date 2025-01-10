@@ -18,5 +18,4 @@ model tb_produk {
   nama      String    @db.VarChar(255)
   harga     Float
   deskripsi String?   @db.Text
-  gambar    String    @db.VarChar(255)
 }
