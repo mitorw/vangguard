@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {  } from "../models/produk"; // Fungsi untuk menambahkan produk ke database
+import { } from "../models/produk"; // Fungsi untuk menambahkan produk ke database
+import Link from "@/node_modules/next/link";
 
 export default function AddProdukPage() {
   const [formData, setFormData] = useState({
@@ -36,57 +37,62 @@ export default function AddProdukPage() {
   };
 
   return (
-    <div className="p-10 bg-gray-100">
-      <div className="bg-white p-6 rounded-md shadow-md max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold mb-6">Tambah Produk Baru</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="nama" className="block text-sm font-medium text-gray-700">
-              Nama Produk
-            </label>
-            <input
-              type="text"
-              name="nama"
-              id="nama"
-              value={formData.nama}
-              onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-              required
-            />
+    <div>
+      {/* Navbar */}
+      <header className="mb-10">
+        <nav>
+          <div className="navbar bg-blue-500 fixed top-0 left-0 w-full z-50 shadow-xl">
+            <div className="navbar-start">
+              <Link href={"/dashboard"} className="navbar-center btn btn-ghost text-xl">
+                Barang Second
+              </Link>
+            </div>
+
+            <div className="navbar-end lg:flex">
+              <ul className="menu menu-horizontal px-1">
+                <li>
+                  <Link href={"/dashboard"}>Dashboard</Link>
+                </li>
+                <li>
+                  <Link href={"/profil"}>Profil</Link>
+                </li>
+              </ul>
+              <Link href="/add">
+                <button className=" text-white px-4 py-2 rounded-md ">
+                  Tambah Produk
+                </button>
+              </Link>
+              <Link href="/login" className="pl-2">
+                <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
+                  Login
+                </button>
+              </Link>
+            </div>
           </div>
-          <div className="mb-4">
-            <label htmlFor="harga" className="block text-sm font-medium text-gray-700">
-              Harga Produk
-            </label>
-            <input
-              type="number"
-              name="harga"
-              id="harga"
-              value={formData.harga}
-              onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-              required
-            />
+        </nav>
+      </header>
+
+      <div className="p-10 bg-gray-100 ">
+        <div className="bg-white p-6 rounded-md shadow-md max-w-lg mx-auto">
+          <h2 className="text-2xl font-bold mb-6 text-center text-black">Tambah Produk Baru</h2>
+          <label className="input input-bordered flex items-center my-5">
+            Nama Produk :
+            <input type="text" className="grow" placeholder=" Produk A" />
+          </label>
+          <label className="input input-bordered flex items-center my-5">
+            Harga :
+            <input type="text" className="grow" placeholder=" Rp. 200.000.000" />
+          </label>
+          <label className="input input-bordered flex flex-col my-5 h-40 p-4">
+            Deskripsi Produk :
+            <textarea className="grow p-3 border rounded mt-2 mb-4" placeholder="Windows 11, RTX 3050 TI, dll"></textarea>
+          </label>
+
+          <div className="flex justify-center">
+            <button className="btn btn-xs lg:btn-lg bg-blue-500 text-white">Submit</button>
           </div>
-          <div className="mb-4">
-            <label htmlFor="deskripsi" className="block text-sm font-medium text-gray-700">
-              Deskripsi Produk
-            </label>
-            <textarea
-              name="deskripsi"
-              id="deskripsi"
-              value={formData.deskripsi}
-              onChange={handleInputChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-          >
-            Tambahkan
-          </button>
-        </form>
+
+        </div>
       </div>
     </div>
   );
