@@ -1,40 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { } from "../models/produk"; // Fungsi untuk menambahkan produk ke database
 import Link from "@/node_modules/next/link";
 
 export default function AddProdukPage() {
-  const [formData, setFormData] = useState({
-    id: "",
-    nama: "",
-    harga: "",
-    deskripsi: "",
-  });
-  const router = useRouter();
 
-  // Fungsi untuk menangani perubahan input
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  // Fungsi untuk menangani submit form
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await ({
-        id: formData.id,
-        nama: formData.nama,
-        harga: parseFloat(formData.harga),
-        deskripsi: formData.deskripsi,
-      });
-      router.push("/dashboard"); // Redirect ke dashboard setelah berhasil
-    } catch (error) {
-      console.error("Error menambahkan produk:", error);
-    }
-  };
 
   return (
     <div>

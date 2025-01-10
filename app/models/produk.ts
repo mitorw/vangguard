@@ -22,3 +22,22 @@ export default async function handler(req, res) {
     res.status(405).json({ error: 'Method not allowed' });
   }
 }
+
+export async function setSaveData(nama: string, harga: number, deskripsi?: string) {
+  try {
+    // Pastikan harga adalah angka (integer) sebelum disimpan
+    const hargaInt = Number.isNaN(harga) ? 0 : Math.floor(harga);
+
+    // Simpan data produk ke database
+    await prisma.tb_produk.create({
+      data: {
+        nama: nama,
+        harga: hargaInt,  // Pastikan harga adalah integer
+        deskripsi: deskripsi || null,  // Deskripsi opsional
+      },
+    });
+  } catch (error) {
+    console.error("Gagal menyimpan data produk:", error);
+    throw new Error("Gagal menyimpan data produk. Silakan periksa log untuk detail lebih lanjut.");
+  }
+}
