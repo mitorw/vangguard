@@ -104,6 +104,12 @@ export default function adminPage() {
                                     <p>Price: Rp. {product.harga.toFixed(2)}</p>
                                     <p>{product.deskripsi || "No description available."}</p>
                                     <div className="card-actions justify-end">
+                                        
+                                    <button
+                                    onClick={closePopup}
+                                    className="btn bg-red-500 text-white rounded hover:bg-red-600">
+                                        Delete
+                                        </button>
                                         <button
                                             className="btn btn-primary"
                                             onClick={() => handleDetailClick(product)}
