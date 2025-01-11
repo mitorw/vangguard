@@ -139,7 +139,7 @@ export default function adminPage() {
                 <button
                     onClick={() => {
                         // Arahkan ke halaman update dengan data produk yang dipilih
-                        window.location.href = `/update?nama=${selectedProduct?.nama}&harga=${selectedProduct?.harga}&deskripsi=${selectedProduct?.deskripsi}`;
+                        window.location.href = `/edit?nama=${selectedProduct?.nama}&harga=${selectedProduct?.harga}&deskripsi=${selectedProduct?.deskripsi}`;
                     }}
                     className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 >
