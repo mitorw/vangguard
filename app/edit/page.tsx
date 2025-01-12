@@ -64,7 +64,7 @@ export default function EditProduct() {
   };
 
   return (
-    <div className="p-5 max-w-3xl mx-auto">
+    <div className="flex items-center justify-center w-auto h-auto p-10 bg-gray-100 pt-32">
       {/* Navbar */}
       <header className="mb-10">
         <nav>
@@ -120,67 +120,72 @@ export default function EditProduct() {
         </nav>
       </header>
 
-      <h1 className="text-black text-xl">Edit Produk</h1>
+      
+        <div className="bg-white p-8 rounded-md shadow-lg w-full max-w-md">
 
-      <div className="mb-4">
-        <label className="text-black">Nama Produk Lama:</label>
-        <input
-          type="text"
-          placeholder="Masukkan nama produk lama"
-          value={oldNama}
-          onChange={(e) => setOldNama(e.target.value)}
-          className="text-white w-full p-2 mt-1"
-        />
-        <button onClick={loadProduct} className="text-black mt-2">
-          Muat Data
-        </button>
-      </div>
+          <h1 className="text-black text-3xl text-center mb-3">Edit Produk</h1>
 
-      {error && <p className="text-red-500">{error}</p>}
-      {message && <p className="text-green-500">{message}</p>}
-
-      {product.nama && (
-        <div className="text-black">
           <div className="mb-4">
-            <label>Nama Produk Baru:</label>
+            <label className="text-black">Nama Produk Lama:</label>
             <input
               type="text"
-              name="nama"
-              placeholder="Nama Produk Baru"
-              value={product.nama}
-              onChange={handleInputChange}
+              placeholder="Masukkan nama produk lama"
+              value={oldNama}
+              onChange={(e) => setOldNama(e.target.value)}
               className="text-white w-full p-2 mt-1"
             />
+            <button onClick={loadProduct} className="text-white mt-2 btn bg-blue-500">
+              Muat Data
+            </button>
           </div>
 
-          <div className="mb-4">
-            <label>Harga Produk:</label>
-            <input
-              type="number"
-              name="harga"
-              placeholder="Harga Produk"
-              value={product.harga}
-              onChange={handleInputChange}
-              className="text-white w-full p-2 mt-1"
-            />
-          </div>
+          {error && <p className="text-red-500 bg-black rounded p-3 mb-5">{error}</p>}
+          {message && <p className="text-green-500">{message}</p>}
 
-          <div className="mb-4">
-            <label>Deskripsi Produk:</label>
-            <textarea
-              name="deskripsi"
-              placeholder="Deskripsi Produk"
-              value={product.deskripsi}
-              onChange={handleInputChange}
-              className="text-white w-full p-2 mt-1"
-            />
-          </div>
+          {product.nama && (
+            <div className="text-black">
+              <div className="mb-4">
+                <label>Nama Produk Baru:</label>
+                <input
+                  type="text"
+                  name="nama"
+                  placeholder="Nama Produk Baru"
+                  value={product.nama}
+                  onChange={handleInputChange}
+                  className="text-white w-full p-2 mt-1"
+                />
+              </div>
 
-          <button onClick={handleSave} className="bg-blue-500 text-white px-6 py-3 rounded-md mt-4 hover:bg-blue-700">
-            Simpan Perubahan
-          </button>
+              <div className="mb-4">
+                <label>Harga Produk:</label>
+                <input
+                  type="number"
+                  name="harga"
+                  placeholder="Harga Produk"
+                  value={product.harga}
+                  onChange={handleInputChange}
+                  className="text-white w-full p-2 mt-1"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label>Deskripsi Produk:</label>
+                <textarea
+                  name="deskripsi"
+                  placeholder="Deskripsi Produk"
+                  value={product.deskripsi}
+                  onChange={handleInputChange}
+                  className="text-white w-full p-2 mt-1"
+                />
+              </div>
+
+              <button onClick={handleSave} className="bg-blue-500 text-white px-6 py-3 rounded-md ">
+                Simpan Perubahan
+              </button>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+
+      </div>
   );
 }
