@@ -118,6 +118,7 @@ export default function adminPage() {
                   <p>{product.deskripsi || "No description available."}</p>
                   <div className="card-actions justify-end">
                     <button
+                      onClick={() => handleDelete(product.id)}
                       className="btn bg-red-500 text-white rounded hover:bg-red-600">
                       Delete
                     </button>
