@@ -7,14 +7,31 @@ export default function signupPage() {
     {/* Navbar signup */}
       {/* Navbar */}
       <header className="mb-10">
-          {/* Navbar */}
-          <nav>
-            <div className="navbar bg-blue-500 fixed top-0 left-0 w-full z-50 shadow-xl flex justify-center">
-              <Link href={"/dashboard"} className="btn btn-ghost text-xl">
+        <nav>
+          <div className="navbar bg-blue-500 fixed top-0 left-0 w-full z-50 shadow-xl">
+            <div className="navbar-start">
+              <Link href={"/dashboard"} className="navbar-center btn btn-ghost text-xl">
                 Barang Second
               </Link>
             </div>
-          </nav>
+
+            <div className="navbar-end lg:flex">
+              <ul className="menu menu-horizontal px-1">
+                <li>
+                  <Link href={"/dashboard"}>Dashboard</Link>
+                </li>
+                <li>
+                  <Link href={"/admin"}>Admin</Link>
+                </li>
+              </ul>
+              <Link href="/login" className="pl-2">
+                <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
+                  Login
+                </button>
+              </Link>
+            </div>
+          </div>
+        </nav>
       </header>
 
     {/* signup section */}
