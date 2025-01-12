@@ -9,24 +9,44 @@ export async function getData() {
   return products;
 }
 
-// Fungsi untuk memperbarui data produk berdasarkan nama
-export async function updateProduct(nama: string, harga: number, deskripsi?: string) {
-  try {
-    const hargaInt = Number.isNaN(harga) ? 0 : Math.floor(harga);
+// Fungsi untuk mengambil produk berdasarkan nama
+export const getProductByNama = async (nama: string) => {
+  return await prisma.tb_produk.findMany({
+    where: { nama },
+  });
+};
 
-    // Perbarui data produk berdasarkan nama
-    await prisma.tb_produk.updateMany({
-      where: { nama: nama },
-      data: {
-        harga: hargaInt,  // Pastikan harga adalah integer
-        deskripsi: deskripsi || null,  // Deskripsi opsional
-      },
-    });
-  } catch (error) {
-    console.error("Gagal memperbarui data produk:", error);
-    throw new Error("Gagal memperbarui data produk. Silakan periksa log untuk detail lebih lanjut.");
+// Fungsi untuk memperbarui data produk berdasarkan nama
+export const updateProduct = async (
+  old_nama: string, // Nama lama sebagai parameter
+  nama: string,
+  harga: number,
+  deskripsi: string
+) => {
+  if (!old_nama) {
+    throw new Error("Parameter old_nama tidak boleh kosong.");
   }
-}
+
+  // Cari produk berdasarkan nama lama untuk mendapatkan ID-nya
+  const productToUpdate = await prisma.tb_produk.findUnique({
+    where: { nama: old_nama },
+  });
+
+  if (!productToUpdate) {
+    throw new Error("Produk tidak ditemukan dengan nama tersebut.");
+  }
+
+  // Perbarui produk menggunakan ID yang ditemukan
+  return await prisma.tb_produk.update({
+    where: { id: productToUpdate.id }, // Gunakan ID produk yang ditemukan
+    data: {
+      nama: nama,
+      harga: harga,
+      deskripsi: deskripsi,
+    },
+  });
+};
+
 
 // Endpoint untuk menangani permintaan produk via API
 export default async function handler(req, res) {
@@ -38,16 +58,16 @@ export default async function handler(req, res) {
       res.status(500).json({ error: 'Failed to fetch products' });
     }
   } else if (req.method === 'PUT') {
-    const { nama, harga, deskripsi } = req.body;
+    const { old_nama, nama, harga, deskripsi } = req.body; // Tambahkan old_nama ke body
     try {
-      if (!nama || !harga || !deskripsi) {
-        return res.status(400).json({ error: 'Nama dan harga harus disediakan' });
+      if (!old_nama || !nama || !harga || !deskripsi) {
+        return res.status(400).json({ error: 'Semua data harus disediakan' });
       }
-      
-      
-      await updateProduct(nama, harga, deskripsi);
+
+      await updateProduct(old_nama, nama, harga, deskripsi);
       res.status(200).json({ message: 'Produk berhasil diperbarui' });
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Failed to update product' });
     }
   } else {
