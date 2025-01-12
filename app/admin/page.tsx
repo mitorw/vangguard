@@ -89,6 +89,9 @@ export default function adminPage() {
                 <li>
                   <Link href={"/dashboard"}>Dashboard</Link>
                 </li>
+                <li>
+                  <Link href={"/profil"}>Profil</Link>
+                </li>
               </ul>
               <Link href="/login" className="pl-2">
                 <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
