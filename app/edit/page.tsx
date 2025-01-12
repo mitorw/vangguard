@@ -54,8 +54,10 @@ export default function EditProduct() {
 
       // Panggil fungsi updateProduct dengan data yang benar
       await updateProduct(oldNama, product.nama, product.harga, product.deskripsi);
+      alert("Produk berhasil ditambahkan!");
+      window.location.href = "/admin";
 
-      setMessage("Produk berhasil diperbarui.");
+      
       setError("");
     } catch (err) {
       console.error("Error saat menyimpan:", err);

@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "@/node_modules/next/link";
 import { useState } from "react";
 import { setSaveData } from "../models/produk"; // Import fungsi setSaveData
-import Link from "next/link";
+
 
 export default function AddProdukPage() {
   // State untuk input form
@@ -103,10 +104,17 @@ export default function AddProdukPage() {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="btn btn-xs lg:btn-lg bg-blue-500 text-white"
+                className="btn btn-xs lg:btn-lg bg-blue-500 text-white mr-2"
               >
                 Submit
               </button>
+              <Link
+                href={'/admin'}
+                className={'btn btn-xs lg:btn-lg bg-red-500 text-white mr-2'}
+              >
+               Kembali
+              </Link>
+              
             </div>
           </form>
         </div>
