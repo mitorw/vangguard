@@ -9,6 +9,7 @@ export default function DashboardPage() {
   const [products, setProducts] = useState<any[]>([]); // Menyimpan data produk dalam state
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]); // Menyimpan data produk yang difilter
   const [searchQuery, setSearchQuery] = useState(""); // Menyimpan query pencarian
+  const [sortOption, setSortOption] = useState("default"); // Menyimpan opsi pengurutan
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null); // Menyimpan produk yang dipilih
   const [isPopupVisible, setPopupVisible] = useState(false); // Mengontrol visibilitas pop-up
 
@@ -36,9 +37,33 @@ export default function DashboardPage() {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
 
-    const filtered = products.filter((product) =>
+    filterAndSortProducts(query, sortOption);
+  }
+
+  // Fungsi untuk menangani pengurutan
+  function handleSortChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    const option = event.target.value;
+    setSortOption(option);
+
+    filterAndSortProducts(searchQuery, option);
+  }
+
+  // Fungsi untuk memfilter dan mengurutkan produk
+  function filterAndSortProducts(query: string, sortOption: string) {
+    let filtered = products.filter((product) =>
       product.nama.toLowerCase().includes(query)
     );
+
+    if (sortOption === "price-asc") {
+      filtered = filtered.sort((a, b) => a.harga - b.harga);
+    } else if (sortOption === "price-desc") {
+      filtered = filtered.sort((a, b) => b.harga - a.harga);
+    } else if (sortOption === "name-asc") {
+      filtered = filtered.sort((a, b) => a.nama.localeCompare(b.nama));
+    } else if (sortOption === "name-desc") {
+      filtered = filtered.sort((a, b) => b.nama.localeCompare(a.nama));
+    }
+
     setFilteredProducts(filtered);
   }
 
@@ -99,15 +124,26 @@ export default function DashboardPage() {
         <div className="bg-white p-4 rounded-md shadow-lg w-full">
           <h2 className="text-black text-center mb-10 text-2xl">Daftar Produk</h2>
 
-          {/* Search Bar */}
-          <div className="mb-6">
+          {/* Search and Sort Bar */}
+          <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md"
+              className="w-full md:w-1/2 p-2 border border-gray-300 rounded-md mb-4 md:mb-0"
               placeholder="Cari produk..."
               value={searchQuery}
               onChange={handleSearchChange}
             />
+            <select
+              className="w-full md:w-1/4 p-2 border border-gray-300 rounded-md"
+              value={sortOption}
+              onChange={handleSortChange}
+            >
+              <option value="default">Urutkan</option>
+              <option value="price-asc">Harga: Rendah ke Tinggi</option>
+              <option value="price-desc">Harga: Tinggi ke Rendah</option>
+              <option value="name-asc">Nama: A ke Z</option>
+              <option value="name-desc">Nama: Z ke A</option>
+            </select>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
