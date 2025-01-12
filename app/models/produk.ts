@@ -44,6 +44,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Nama dan harga harus disediakan' });
       }
       
+      
       await updateProduct(nama, harga, deskripsi);
       res.status(200).json({ message: 'Produk berhasil diperbarui' });
     } catch (error) {
@@ -73,3 +74,16 @@ export async function setSaveData(nama: string, harga: number, deskripsi?: strin
     throw new Error("Gagal menyimpan data produk. Silakan periksa log untuk detail lebih lanjut.");
   }
 }
+
+// Fungsi untuk menghapus produk berdasarkan ID
+export async function deleteProduct(id: string) {
+  try {
+    await prisma.tb_produk.delete({
+      where: { id },
+    });
+  } catch (error) {
+    console.error("Gagal menghapus data produk:", error);
+    throw new Error("Gagal menghapus data produk.");
+  }
+}
+
