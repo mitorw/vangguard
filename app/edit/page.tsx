@@ -53,6 +53,9 @@ export default function UpdateProdukPage() {
                 <li>
                   <Link href={"/profil"}>Profil</Link>
                 </li>
+                <li>
+                  <Link href={"/admin"}>Admin Dashboard</Link>
+                </li>
               </ul>
               <Link href="/login" className="pl-2">
                 <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
