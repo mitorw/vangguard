@@ -1,12 +1,12 @@
-"use server"
-import { PrismaClient } from '@prisma/client';
+"use server";
+
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 // Fungsi untuk menampilkan data produk
 export async function getData() {
-  const products = await prisma.tb_produk.findMany();
-  return products;
+  return await prisma.tb_produk.findMany();
 }
 
 // Fungsi untuk mengambil produk berdasarkan nama
@@ -18,7 +18,7 @@ export const getProductByNama = async (nama: string) => {
 
 // Fungsi untuk memperbarui data produk berdasarkan nama
 export const updateProduct = async (
-  old_nama: string, // Nama lama sebagai parameter
+  old_nama: string,
   nama: string,
   harga: number,
   deskripsi: string
@@ -27,8 +27,8 @@ export const updateProduct = async (
     throw new Error("Parameter old_nama tidak boleh kosong.");
   }
 
-  // Cari produk berdasarkan nama lama untuk mendapatkan ID-nya
-  const productToUpdate = await prisma.tb_produk.findUnique({
+  // Cari produk berdasarkan nama lama
+  const productToUpdate = await prisma.tb_produk.findFirst({
     where: { nama: old_nama },
   });
 
@@ -36,44 +36,39 @@ export const updateProduct = async (
     throw new Error("Produk tidak ditemukan dengan nama tersebut.");
   }
 
-  // Perbarui produk menggunakan ID yang ditemukan
+  // Perbarui data produk menggunakan ID
   return await prisma.tb_produk.update({
-    where: { id: productToUpdate.id }, // Gunakan ID produk yang ditemukan
-    data: {
-      nama: nama,
-      harga: harga,
-      deskripsi: deskripsi,
-    },
+    where: { id: productToUpdate.id },
+    data: { nama, harga, deskripsi },
   });
 };
 
-
-// Endpoint untuk menangani permintaan produk via API
+// Endpoint untuk API produk
 export default async function handler(req, res) {
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     try {
       const products = await getData();
       res.status(200).json(products);
     } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch products' });
+      res.status(500).json({ error: "Failed to fetch products." });
     }
-  } else if (req.method === 'PUT') {
-    const { old_nama, nama, harga, deskripsi } = req.body; // Tambahkan old_nama ke body
+  } else if (req.method === "PUT") {
+    const { old_nama, nama, harga, deskripsi } = req.body;
     try {
-      if (!old_nama || !nama || !harga || !deskripsi) {
-        return res.status(400).json({ error: 'Semua data harus disediakan' });
+      if (!old_nama || !nama || harga === undefined || !deskripsi) {
+        return res.status(400).json({ error: "Semua data harus disediakan." });
       }
-
       await updateProduct(old_nama, nama, harga, deskripsi);
-      res.status(200).json({ message: 'Produk berhasil diperbarui' });
+      res.status(200).json({ message: "Produk berhasil diperbarui." });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Failed to update product' });
+      res.status(500).json({ error: "Failed to update product." });
     }
   } else {
-    res.status(405).json({ error: 'Method not allowed' });
+    res.status(405).json({ error: "Method not allowed." });
   }
 }
+
 
 // Fungsi untuk menyimpan data produk baru
 export async function setSaveData(nama: string, harga: number, deskripsi?: string) {
