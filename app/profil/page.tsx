@@ -22,7 +22,7 @@ export default function Profile() {
                     <Link href={"/dashboard"}>Dashboard</Link>
                   </li>
                   <li>
-                  <Link href={"/profil"}>Profil</Link>
+                  <Link href={"/admin"}>Admin Dashboard</Link>
                   </li>
                 </ul>
                 
