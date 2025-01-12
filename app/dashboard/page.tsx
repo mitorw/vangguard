@@ -7,6 +7,8 @@ import { getData } from "../models/produk"; // Mengimpor fungsi getData untuk me
 
 export default function DashboardPage() {
   const [products, setProducts] = useState<any[]>([]); // Menyimpan data produk dalam state
+  const [filteredProducts, setFilteredProducts] = useState<any[]>([]); // Menyimpan data produk yang difilter
+  const [searchQuery, setSearchQuery] = useState(""); // Menyimpan query pencarian
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null); // Menyimpan produk yang dipilih
   const [isPopupVisible, setPopupVisible] = useState(false); // Mengontrol visibilitas pop-up
 
@@ -14,6 +16,7 @@ export default function DashboardPage() {
   async function fetchData() {
     const data = await getData(); // Mendapatkan data produk
     setProducts(data); // Menyimpan data produk ke state
+    setFilteredProducts(data); // Awalnya tampilkan semua produk
   }
 
   // Fungsi untuk menampilkan pop-up detail produk
@@ -26,6 +29,17 @@ export default function DashboardPage() {
   function closePopup() {
     setPopupVisible(false);
     setSelectedProduct(null);
+  }
+
+  // Fungsi untuk menangani pencarian
+  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    const filtered = products.filter((product) =>
+      product.nama.toLowerCase().includes(query)
+    );
+    setFilteredProducts(filtered);
   }
 
   // useEffect untuk mengambil data produk ketika halaman dimuat
@@ -84,8 +98,20 @@ export default function DashboardPage() {
       <div className="flex items-center justify-center w-auto h-auto p-10 bg-gray-100">
         <div className="bg-white p-4 rounded-md shadow-lg w-full">
           <h2 className="text-black text-center mb-10 text-2xl">Daftar Produk</h2>
+
+          {/* Search Bar */}
+          <div className="mb-6">
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              placeholder="Cari produk..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <div key={product.id} className="card glass">
                 <img
                   src="/images/item.jpg"
@@ -114,22 +140,22 @@ export default function DashboardPage() {
       {/* Pop-up */}
       {isPopupVisible && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
-          <h2 className="text-xl font-bold mb-4 text-black">{selectedProduct?.nama}</h2>
-          <p className="text-black">
-            <strong>Harga:</strong> Rp. {selectedProduct?.harga.toFixed(2)}
-          </p>
-          <p className="text-black">
-            <strong>Deskripsi:</strong> {selectedProduct?.deskripsi || "Tidak ada deskripsi tersedia."}
-          </p>
-          <button
-            onClick={closePopup}
-            className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-          >
-            Tutup
-          </button>
+          <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
+            <h2 className="text-xl font-bold mb-4 text-black">{selectedProduct?.nama}</h2>
+            <p className="text-black">
+              <strong>Harga:</strong> Rp. {selectedProduct?.harga.toFixed(2)}
+            </p>
+            <p className="text-black">
+              <strong>Deskripsi:</strong> {selectedProduct?.deskripsi || "Tidak ada deskripsi tersedia."}
+            </p>
+            <button
+              onClick={closePopup}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Tutup
+            </button>
+          </div>
         </div>
-      </div>
       )}
     </div>
   );
