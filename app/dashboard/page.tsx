@@ -87,9 +87,6 @@ export default function DashboardPage() {
             <div className="navbar-end lg:flex">
               <ul className="menu menu-horizontal px-1">
                 <li>
-                  <Link href={"/dashboard"}>Dashboard</Link>
-                </li>
-                <li>
                   <Link href={"/profil"}>Profil</Link>
                 </li>
                 <li>
