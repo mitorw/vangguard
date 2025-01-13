@@ -18,6 +18,7 @@ export default function Profile() {
 
               <div className="navbar-end lg:flex">
               <ul className="menu menu-horizontal px-1">
+
                   <li>
                   <Link href={"/admin"}>Admin Dashboard</Link>
                   </li>
@@ -33,26 +34,35 @@ export default function Profile() {
           </nav>
     </header>
     
-    {/* Bagian Profile */}
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+     {/* Bagian Profile */}
+     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded shadow-md w-full mx-10">
         {/* Header Profil */}
-        <div className="flex items-center space-x-4">
-          <div className="w-32 h-32">
-            <img
-              src="/images/item.jpg" // source gambar avatar pengguna
-              alt="User Avatar"
-              width={150}
-              height={150}
-              className="object-cover rounded-full"
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="w-32 h-32">
+              <img
+                src="/images/item.jpg" // source gambar avatar pengguna
+                alt="User Avatar"
+                width={150}
+                height={150}
+                className="object-cover rounded-full"
               />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800">Budi</h2>
+              <p className="text-sm text-gray-500">budi@gmail.com</p>
+              <p className="mt-1 text-gray-600">
+                Member since: January 2024
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-800">Budi</h2>
-            <p className="text-sm text-gray-500">budi@gmail.com</p>
-            <p className="mt-1 text-gray-600">
-              Member since: January 2024
-            </p>
+
+          {/* Tombol Edit Profil */}
+          <div className="text-center">
+            <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+              Edit Profile
+            </button>
           </div>
         </div>
 
@@ -78,16 +88,6 @@ export default function Profile() {
             </div>
           </div>
         </div>
-
-        {/* Tombol Edit Profil */}
-        <div className="mt-6 text-center">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            Edit Profile
-          </button>
-        </div>
-
-
-        
       </div>
     </div>
   </div>
