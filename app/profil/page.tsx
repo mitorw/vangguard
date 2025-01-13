@@ -26,11 +26,7 @@ export default function Profile() {
                 </li>
               </ul>
 
-              <Link href="/login" className="pl-2">
-                <button className="bg-white text-blue-500 px-4 py-2 rounded-md hover:bg-gray-200">
-                  Login
-                </button>
-              </Link>
+             
             </div>
           </div>
         </nav>
@@ -60,11 +56,16 @@ export default function Profile() {
               </div>
             </div>
 
-            {/* Tombol Edit Profil */}
-            <div className="text-center">
+            {/* Tombol Edit Profil dan Login */}
+            <div className="flex items-center space-x-2">
               <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                 <FontAwesomeIcon icon={faPenToSquare} />
               </button>
+              <Link href="/log out ">
+                <button className="px-4 py-2 bg-white text-red-500 border border-red-500 rounded hover:bg-red-500 hover:text-white">
+                  Logout 
+                </button>
+              </Link>
             </div>
           </div>
 
@@ -87,7 +88,7 @@ export default function Profile() {
               </div>
               <div className=" col-span-4">
                 <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
-                  <span className="text-sm text-gray-800">Budi@gmail.com </span>
+                  <span className="text-sm text-gray-800">budi@gmail.com </span>
                 </div>
               </div>
               {/* Phone*/}
