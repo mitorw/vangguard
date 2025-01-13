@@ -19,9 +19,6 @@ export default function Profile() {
               <div className="navbar-end lg:flex">
               <ul className="menu menu-horizontal px-1">
                   <li>
-                    <Link href={"/dashboard"}>Dashboard</Link>
-                  </li>
-                  <li>
                   <Link href={"/admin"}>Admin Dashboard</Link>
                   </li>
                 </ul>
