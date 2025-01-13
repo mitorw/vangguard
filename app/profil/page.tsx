@@ -69,22 +69,22 @@ export default function Profile() {
         {/* Informasi Detail */}
         <div className="mt-6 border-t pt-4">
           <h3 className="text-lg font-semibold text-gray-700">Profile Details</h3>
-          <div className="mt-3 space-y-2">
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>Full Name:</span>
-              <span></span>
+          <div className="mt-3 space-y-4">
+            <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+              <span className="text-sm text-gray-600">Full Name:</span>
+              <span className="text-sm text-gray-800">Budi</span>
             </div>
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>Email:</span>
-              <span></span>
+            <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+              <span className="text-sm text-gray-600">Email:</span>
+              <span className="text-sm text-gray-800">budi@gmail.com</span>
             </div>
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>Phone:</span>
-              <span></span>
+            <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+              <span className="text-sm text-gray-600">Phone:</span>
+              <span className="text-sm text-gray-800">+62 123 4567</span>
             </div>
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>Address:</span>
-              <span></span>
+            <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+              <span className="text-sm text-gray-600">Address:</span>
+              <span className="text-sm text-gray-800">Jl. Merdeka No. 1</span>
             </div>
           </div>
         </div>
